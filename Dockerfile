@@ -1,0 +1,14 @@
+FROM  openjdk:8-alpine
+
+MAINTAINER vikas
+
+ENV JAR_FILE=demo-0.0.1-SNAPSHOT.jar
+
+ENV INSTALL_DIR=/opt/rest-service/
+RUN mkdir -p ${INSTALL_DIR}
+COPY target/${JAR_FILE} ${INSTALL_DIR}/
+
+
+ENV SERVER_PORT=8080
+EXPOSE 8080
+ENTRYPOINT java -jar ${INSTALL_DIR}/${JAR_FILE}
